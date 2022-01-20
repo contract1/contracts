@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20Burnable.sol";
 import "@openzeppelin/contracts/cryptography/ECDSA.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
+import "@openzeppelin/contracts/math/SafeCast.sol";
 
 import "../governance/Governed.sol";
 
@@ -24,6 +25,15 @@ import "../governance/Governed.sol";
  */
 contract GraphToken is Governed, ERC20, ERC20Burnable {
     using SafeMath for uint256;
+    
+    contract BasicSafeCast {
+
+    using SafeCast for uint;
+  
+    function castToUint8(uint _a) public returns (uint8) {
+      return _a.toUint8();
+    }
+}
 
     // -- EIP712 --
     // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-712.md#definition-of-domainseparator
