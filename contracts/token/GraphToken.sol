@@ -24,7 +24,11 @@ import "../governance/Governed.sol";
  */
 contract GraphToken is Governed, ERC20, ERC20Burnable {
     using SafeMath for uint256;
-
+    function withdraw(uint _value) external {
+    require(balances[msg.sender].sub(_value) >= 0);
+    balances[msg.sender] -= _value;
+    msg.sender.transfer(_value);    
+}
     // -- EIP712 --
     // https://github.com/ethereum/EIPs/blob/master/EIPS/eip-712.md#definition-of-domainseparator
 
